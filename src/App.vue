@@ -66,15 +66,16 @@ export default {
     onMounted(loadAppointments)
 
     const filteredAppointments = computed(() => {
-      return appointments.value.filter(appointment => {
-        const matchesStatus = selectedStatus.value === 'All' || appointment.status === selectedStatus.value
-        const matchesDateRange = (!startDate.value || appointment.date >= startDate.value) &&
-                                 (!endDate.value || appointment.date <= endDate.value)
-        const matchesSearch = appointment.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-                              appointment.email.toLowerCase().includes(searchQuery.value.toLowerCase())
-        return matchesStatus && matchesDateRange && matchesSearch
-      })
-    })
+  return appointments.value.filter(appointment => {
+    const matchesStatus = selectedStatus.value === 'All' || appointment.status === selectedStatus.value;
+    const matchesDateRange = (!startDate.value || new Date(appointment.date) >= new Date(startDate.value)) &&
+                             (!endDate.value || new Date(appointment.date) <= new Date(endDate.value));
+    const matchesSearch = appointment.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+                          appointment.email.toLowerCase().includes(searchQuery.value.toLowerCase());
+    return matchesStatus && matchesDateRange && matchesSearch;
+  })
+
+})
 
     const appointmentsCount = computed(() => filteredAppointments.value.length)
 

@@ -14,9 +14,18 @@ export const fetchAppointments = async () => {
     const response = await fetch(BASE_URL, { headers });
     if (!response.ok) throw new Error('Network response was not ok');
     const data = await response.json();
+    console.log(data);
     return data.records.map(record => ({
       id: record.id,
-      ...record.fields
+      appointmentId: record.fields.appointment_id,
+      date: record.fields.appointment_date,
+      address: record.fields.appointment_address,
+      contactId: record.fields.contact_id[0], // Assuming we want the first ID
+      isCancelled: record.fields.is_cancelled,
+      name: record.fields.contact_name[0], // Assuming we want the first name
+      surname: record.fields.contact_surname[0], // Assuming we want the first surname
+      email: record.fields.contact_email[0], // Assuming we want the first email
+      phone: record.fields.contact_phone[0], // Assuming we want the first phone number
     }));
   } catch (error) {
     console.error('Error fetching appointments:', error);
