@@ -68,10 +68,27 @@ export default defineComponent({
   border-radius: 4px;
 }
 
+p {
+  font-size: 12px;
+}
+
+h3 {
+  font-size: 14px
+}
+
+
 .appointment-status {
   padding: 5px 10px;
   border-radius: 15px;
   font-weight: bold;
+}
+
+.appointment-actions button {
+  background-color: #ff6347;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
 }
 
 .status-upcoming {

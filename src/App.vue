@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header>
+    <header id="header">
       <h1>Appointment Manager</h1>
       <div class="filters">
         <button v-for="status in statusOptions" :key="status" @click="filterByStatus(status)">
