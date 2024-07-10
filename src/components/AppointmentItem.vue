@@ -1,20 +1,15 @@
 <template>
   <div class="appointment-item">
     <div class="appointment-info">
-      <h3>{{ appointment.name }}</h3>
+      <h3>{{ appointment.name + ' ' + appointment.surname}}</h3>
       <p>{{ appointment.email }}</p>
-      <p>{{ appointment.address }}</p>
+      <p>{{ appointment.phone }}</p>
     </div>
     <div class="appointment-status" :class="statusClass">
-      {{ appointment.status }}
+      {{ appointment.address }}
     </div>
     <div class="appointment-time">
-      {{ formatDate(appointment.date) }}
-    </div>
-    <div class="appointment-actions">
-      <button @click="updateStatus('Completed')" v-if="appointment.status === 'Upcoming'">Complete</button>
-      <button @click="updateStatus('Cancelled')" v-if="appointment.status === 'Upcoming'">Cancel</button>
-      <button @click="$emit('delete')">Delete</button>
+      {{ statusClass + ' ' + formatDate(appointment.date) }}
     </div>
   </div>
 </template>
@@ -32,55 +27,47 @@ export default defineComponent({
   },
   emits: ['update', 'delete'],
   setup(props) {
+    // Use a computed property for statusClass to make it reactive
     const statusClass = computed(() => {
-      return {
-        'status-upcoming': props.appointment.status === 'Upcoming',
-        'status-completed': props.appointment.status === 'Completed',
-        'status-cancelled': props.appointment.status === 'Cancelled'
-      }
-    })
+      return props.appointment.date < new Date() ? "Completed" : "Upcoming";
+    });
 
     const formatDate = (dateString) => {
-      const date = new Date(dateString)
-      return date.toLocaleString()
-    }
+      const date = new Date(dateString);
+      return date.toLocaleString();
+    };
 
     const updateStatus = (newStatus) => {
-      emit('update', { status: newStatus })
-    }
+      emit('update', { status: newStatus });
+    };
 
     return {
-      statusClass,
+      statusClass, // Now a computed property
       formatDate,
       updateStatus
-    }
+    };
   }
 })
 </script>
 
 <style scoped>
 .appointment-item {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
   align-items: center;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-p {
   font-size: 12px;
 }
 
-h3 {
-  font-size: 14px
-}
-
-
-.appointment-status {
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-weight: bold;
+.appointment-time {
+  background-color: #EC1E80;
+  height: 40px;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: right;
 }
 
 .appointment-actions button {
