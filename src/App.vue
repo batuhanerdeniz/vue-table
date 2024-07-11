@@ -3,9 +3,11 @@
     <header id="header">
       <h1>Appointment Manager</h1>
       <div class="filters">
-        <button v-for="status in statusOptions" :key="status" @click="filterByStatus(status)">
-          {{ status }}
-        </button>
+        <select v-model="selectedStatus" @change="filterByStatus(selectedStatus)">
+          <option v-for="status in statusOptions" :key="status" :value="status">
+            {{ status }}
+          </option>
+        </select>
       </div>
       <div class="date-range">
         <input type="date" v-model="startDate" @change="filterByDateRange">

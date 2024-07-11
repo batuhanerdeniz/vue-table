@@ -12,9 +12,9 @@
   </div>
       <!-- Pagination Controls -->
       <div class="pagination-controls">
-      <button @click="currentPage--" :disabled="currentPage <= 1">Previous</button>
-      <span>Page {{ currentPage }} of {{ totalPages }}</span>
-      <button @click="currentPage++" :disabled="currentPage >= totalPages">Next</button>
+      <button @click="currentPage--" :disabled="currentPage <= 1"><</button>
+      <span>{{ currentPage }} / {{ totalPages }}</span>
+      <button @click="currentPage++" :disabled="currentPage >= totalPages">></button>
     </div>
 </template>
 
@@ -64,10 +64,30 @@ export default defineComponent({
 .appointment-list {
   display: flex;
   flex-direction: column;
+  padding-right: 10px;
+  width: calc(100% - 10px);
   gap: 7px;
   height: 75vh;
   overflow-y: auto;
   margin-top: 10px;
+}
+
+.appointment-list::-webkit-scrollbar {
+  margin-left: 50px;
+  width: 8px; 
+}
+
+.appointment-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.appointment-list::-webkit-scrollbar-thumb {
+  background: pink;
+  border-radius: 4px;
+}
+
+.appointment-list::-webkit-scrollbar-button {
+  display: none;
 }
 
 .pagination-controls {

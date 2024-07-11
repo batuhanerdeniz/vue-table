@@ -7,10 +7,47 @@
 }
 
 #header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr 1fr 1.5fr;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+#header button{
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #EC1E80;
+  color: white;
+  cursor: pointer;
+  transition: 0.4s;
+  margin-right: 4rem;
+}
+
+#header button:hover {
+  background-color: #FF4D9E;
+}
+
+#header select{
+  padding: 0.5rem 2rem;
+  border: 1px solid #EC1E80;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+#header select:hover {
+  background-color: #f1f1f1;
+}
+
+#header input {
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #EC1E80;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  transition: 0.4s;
+  margin-left: 0.5rem;
 }
 
 a,

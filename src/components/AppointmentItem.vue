@@ -5,11 +5,12 @@
       <p>{{ appointment.email }}</p>
       <p>{{ appointment.phone }}</p>
     </div>
-    <div class="appointment-status" :class="statusClass">
+    <div class="appointment-status">
       {{ appointment.address }}
     </div>
     <div class="appointment-time">
-      {{ statusClass + ' ' + formatDate(appointment.date) }}
+      <span class="status">{{ statusClass }}</span>
+      <span>{{ formatDate(appointment.date) }}</span>
     </div>
   </div>
 </template>
@@ -61,12 +62,31 @@ export default defineComponent({
   font-size: 12px;
 }
 
+.appointment-item:nth-child(even) {
+  background-color: #fff;
+}
+.appointment-item:nth-child(odd) {
+  background-color: #f1f1f1; 
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  color:#f68b00;
+  font-weight: bold;
+  text-align: center;
+}
+
 .appointment-time {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
   background-color: #EC1E80;
   height: 40px;
   color: white;
   border-radius: 10px;
-  padding: 10px;
+  padding: 0px 10px;
   text-align: right;
 }
 
@@ -83,7 +103,7 @@ export default defineComponent({
 }
 
 .status-completed {
-  background-color: #90ee90;
+  background-color: #70ee90;
 }
 
 .status-cancelled {
