@@ -1,10 +1,53 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.8rem;
   font-weight: normal;
+}
+
+#header {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr 1fr 1.5fr;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#header button{
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #EC1E80;
+  color: white;
+  cursor: pointer;
+  transition: 0.4s;
+  margin-right: 4rem;
+}
+
+#header button:hover {
+  background-color: #FF4D9E;
+}
+
+#header select{
+  padding: 0.5rem 2rem;
+  border: 1px solid #EC1E80;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+#header select:hover {
+  background-color: #f1f1f1;
+}
+
+#header input {
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #EC1E80;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  transition: 0.4s;
+  margin-left: 0.5rem;
 }
 
 a,
@@ -18,18 +61,5 @@ a,
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
   }
 }
